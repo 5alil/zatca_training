@@ -3,12 +3,26 @@ import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
+import Counter from './Components/Counter'
+import Users from './Components/Users'
+
+function Header({ cartCount }: { cartCount: number }) {
+  return <h2>Cart: {cartCount}</h2>;
+}
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCounter] = useState(0);
+
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <>
+    <Counter />
+     <div>
+      <h1>My React Application</h1>
+      <Users />
+    </div>
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
@@ -24,10 +38,23 @@ function App() {
         <button
           type="button"
           className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          onClick={() => setCounter((counter) => counter + 1)}
         >
           Count is {count}
         </button>
+
+          <div>
+      <input
+        type={showPassword ? "text" : "password"}
+        placeholder="Password"
+      />
+
+      <button onClick={() => setShowPassword(!showPassword)}>
+        Toggle Password
+      </button>
+
+       <Header cartCount={count} />
+    </div>
       </section>
 
       <div className="ticks"></div>
